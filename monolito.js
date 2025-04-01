@@ -14,8 +14,18 @@ app.post("/usuarios", (req, res) => {
     res.send({menssage: "Usuario Cadastrado com Sucesso", usuario})
 })
 
-app.get("/dados", (rea, res) => {
+app.post("/pedidos", (req, res) => {
+    const pedido = req.body;
+    pedidos.push(pedido)
+    res.send({menssage: "Pedido Criado com Sucesso", pedido})
+})
+
+app.get("/dados", (req, res) => {
     res.send({usuarios})
+})
+
+app.get("/pedido", (req,res) => {
+    res.send({pedidos})
 })
 
 app.listen(3000, () => console.log("Servidor monolitico ok, porta 3000"))
