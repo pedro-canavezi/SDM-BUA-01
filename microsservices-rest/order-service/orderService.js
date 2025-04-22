@@ -32,7 +32,7 @@ app.get('pedidos/:id', (req, res) => {
 
 app.put('/pedidos/:id', (req, res) => {
     const orderId = req.params.id;
-    const oderIndex = orders.findIndex(o => o.id === orderId);
+    const orderIndex = orders.findIndex(o => o.id === orderId);
     if(orderIndex === -1){
         return res.status(404).send({message: "Pedidos não encontrado"});
     }
@@ -44,5 +44,15 @@ app.put('/pedidos/:id', (req, res) => {
     orders[orderIndex] = {id: orderId, product, quantity};
     res.status(200).send({message: "Pedido atualizado com sucesso", order: orders[orderIndex]});
 })
+
+app.delete('/pedidos/:id', (req, res) => {
+    const orderId = req.params.id; 
+    const orderIndex = orders.findIndex(o => o.id === orderId); 
+    if (orderIndex === -1) {
+        return res.status(404).send({ message: 'Pedido não encontrado!' });
+    }
+    orders.splice(orderIndex, 1); 
+    res.status(200).send({ message: 'Pedido excluído com sucesso!' });
+});
 
 app.listen(4000, () => console.log("Order Service rodando na porta 4000"));
