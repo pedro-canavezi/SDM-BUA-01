@@ -47,7 +47,7 @@ app.put('/pedidos/:id', (req, res) => {
 
 app.delete('/pedidos/:id', (req, res) => {
     const orderId = req.params.id; 
-    const orderIndex = orders.findIndex(o => o.id === orderId); 
+    const orderIndex = orders.findIndex(o => o.id == orderId); 
     if (orderIndex === -1) {
         return res.status(404).send({ message: 'Pedido não encontrado!' });
     }
